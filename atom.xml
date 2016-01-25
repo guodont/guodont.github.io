@@ -4,7 +4,7 @@
   <subtitle><![CDATA[记录、分享]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-25T00:24:06.000Z</updated>
+  <updated>2016-01-25T15:50:40.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[LinuxC 进程间通信的小栗子🌰]]></title>
+    <link href="http://yoursite.com/2016/01/25/LinuxC-%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E5%B0%8F%E6%A0%97%E5%AD%90%F0%9F%8C%B0/"/>
+    <id>http://yoursite.com/2016/01/25/LinuxC-进程间通信的小栗子🌰/</id>
+    <published>2016-01-25T15:46:14.000Z</published>
+    <updated>2016-01-25T15:50:40.000Z</updated>
+    <content type="html"><![CDATA[<p>🌰在这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &#60;stdio.h&#62;&#10;#include &#60;sys/types.h&#62;&#10;#include &#60;sys/ipc.h&#62;&#10;#include &#60;sys/msg.h&#62;&#10;/**&#10;* &#36827;&#31243;&#38388;&#36890;&#20449; &#21457;&#36865;&#31471;&#10;**/&#10;int main()&#10;&#123;&#10;&#9;int msgid;&#10;&#10;  &#9;struct msg &#123;&#10;&#9;&#9;long type;&#10;&#9;&#9;char data[20];&#10;&#9;&#125; don = &#123;&#10;&#9;&#9;.type = 1L,&#10;&#9;&#9;.data = &#34;Hello Msg&#34;,&#10;&#9;&#125;;&#9;// &#28040;&#24687;&#31867;&#22411;&#10;&#10;&#9;//struct msg don; //&#160;&#23454;&#20363;&#21270;&#10;&#10;&#9;key_t key;&#10;&#10;&#9;key = ftok(&#34;/home&#34; , &#39;i&#39;);&#10;&#10;&#9;msgid = msgget(key, IPC_CREAT | 0666);&#9;&#10;&#9;&#10;&#9;msgsnd(msgid, &#38;don, sizeof(don) - sizeof(long), 0);&#9;&#10;&#9;&#10;&#9;return 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include&#60;stdio.h&#62;&#10;#include&#60;sys/types.h&#62;&#10;#include&#60;sys/ipc.h&#62;&#10;#include&#60;sys/msg.h&#62;&#10;/**&#10;* &#36827;&#31243;&#38388;&#36890;&#20449; &#25509;&#25910;&#31471;&#10;**/&#10;int main()&#10;&#123;&#10;&#9;int msgid;&#10;&#9;&#10;&#9;key_t key;&#10;&#10;&#9;struct msg&#10;&#9;&#123;&#10;&#9;&#9;long type;&#10;&#9;&#9;char data[20];&#10;&#9;&#125;;&#10;&#10;&#9;struct msg don;&#9;// &#23454;&#20363;&#21270; &#34429;&#28982;&#21464;&#37327;&#21517;&#19968;&#26679;,&#20294;&#20114;&#19981;&#24178;&#25200;&#10;&#9;&#10;&#9;key = ftok(&#34;/home&#34;,&#39;i&#39;);&#10;&#10;&#9;msgid = msgget(key, 0666);&#10;&#10;&#9;while(1)&#10;&#9;&#123;&#10;&#9;&#9;msgrcv(msgid, &#38;don, sizeof(don) - sizeof(long), 0, 0);&#9;&#10;&#9;&#10;&#9;&#9;printf(&#34;rcvbuf = %s\n&#34;, don.data);&#10;&#9;&#125;&#10;&#10;&#9;return 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>🌰在这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><]]>
+    </summary>
+    
+      <category term="LinuxC - C" scheme="http://yoursite.com/tags/LinuxC-C/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[AboutMe]]></title>
